@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://b55hgeofj6nfc"]
+
+[ext_resource type="Script" uid="uid://o6vxqe1i26p2" path="res://src/main.gd" id="1_eewff"]
+[ext_resource type="PackedScene" uid="uid://jnkfkos2xch2" path="res://src/background.tscn" id="2_gh0ne"]
+[ext_resource type="PackedScene" uid="uid://di4u67i0uydmq" path="res://src/floor.tscn" id="3_5q4o7"]
+[ext_resource type="PackedScene" uid="uid://cfd1v6l03kjmy" path="res://src/player.tscn" id="4_3cfgd"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_eewff")
+
+[node name="Background" parent="." instance=ExtResource("2_gh0ne")]
+
+[node name="Floor" parent="." instance=ExtResource("3_5q4o7")]
+
+[node name="Player" parent="." instance=ExtResource("4_3cfgd")]
+position = Vector2(72, 216)
+
+[node name="StateMachineDebug" type="Node" parent="."]
