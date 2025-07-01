@@ -8,8 +8,8 @@ enum State {
 
 const GRAVITY = 1300.0
 const JUMP_VELOCITY = -300.0
-const JUMP_HOLD_ACCELERATION = -1000
-const MAX_JUMP_TIME = 0.3
+const JUMP_HOLD_ACCELERATION = -800
+const MAX_JUMP_TIME = 0.5
 
 var state = State.FALLING
 var jump_buffer_timer = 0.0
