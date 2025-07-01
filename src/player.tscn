@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfd1v6l03kjmy"]
+[gd_scene load_steps=8 format=3 uid="uid://cfd1v6l03kjmy"]
 
 [ext_resource type="Script" uid="uid://cjocxq2datxch" path="res://src/player.gd" id="1_ehvfd"]
 [ext_resource type="Texture2D" uid="uid://dxxxyt6hi8yyb" path="res://assets/duck1.png" id="1_gmfve"]
 [ext_resource type="Texture2D" uid="uid://igagkqdsexp6" path="res://assets/duck2.png" id="2_ehvfd"]
+[ext_resource type="Script" uid="uid://834ijp6sswoi" path="res://src/label.gd" id="4_bktlc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bktlc"]
 animations = [{
@@ -45,3 +46,17 @@ shape = SubResource("CapsuleShape2D_gmfve")
 position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_ehvfd")
 debug_color = Color(0.879197, 0.285413, 0.479318, 0.42)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = -14.0
+offset_right = 82.0
+offset_bottom = 9.0
+script = ExtResource("4_bktlc")
