@@ -8,9 +8,9 @@ enum State {
 	FALLING
 }
 
-const GRAVITY = 1300.0
-const JUMP_VELOCITY = -300.0
-const JUMP_HOLD_ACCELERATION = -800
+const GRAVITY = 2000.0
+const JUMP_VELOCITY = -500.0
+const JUMP_HOLD_ACCELERATION = -1500
 const MAX_JUMP_TIME = 0.5
 
 var state = State.FALLING
