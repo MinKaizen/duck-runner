@@ -22,10 +22,11 @@ collision_layer = 4
 script = ExtResource("1_5s80d")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -32)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_bktlc")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 25)
+position = Vector2(1, -7)
 shape = SubResource("RectangleShape2D_5s80d")
