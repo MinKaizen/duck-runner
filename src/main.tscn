@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://jnkfkos2xch2" path="res://src/background.tscn" id="2_gh0ne"]
 [ext_resource type="PackedScene" uid="uid://di4u67i0uydmq" path="res://src/floor.tscn" id="3_5q4o7"]
 [ext_resource type="PackedScene" uid="uid://cfd1v6l03kjmy" path="res://src/player.tscn" id="4_3cfgd"]
-[ext_resource type="PackedScene" uid="uid://bi7x0dcdvp3kp" path="res://src/rock.tscn" id="5_fyndt"]
 [ext_resource type="PackedScene" uid="uid://bn4sust3a166v" path="res://src/game_over.tscn" id="6_kmhfv"]
+[ext_resource type="PackedScene" uid="uid://dggaf8gunssyp" path="res://src/enemy_spawner.tscn" id="7_rlaii"]
 
 [node name="Main" type="Node2D"]
 process_mode = 3
@@ -18,12 +18,12 @@ process_mode = 1
 
 [node name="Floor" parent="Game" instance=ExtResource("3_5q4o7")]
 
-[node name="Rock" parent="Game" instance=ExtResource("5_fyndt")]
-position = Vector2(459, 268)
-
 [node name="Player" parent="Game" instance=ExtResource("4_3cfgd")]
 unique_name_in_owner = true
 position = Vector2(72, 272)
+
+[node name="EnemySpawner" parent="Game" instance=ExtResource("7_rlaii")]
+position = Vector2(707, 300)
 
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
