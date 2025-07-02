@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="dino-roguelike"
+config/name="duck-runner"
 run/main_scene="uid://b55hgeofj6nfc"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
