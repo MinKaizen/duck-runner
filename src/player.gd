@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal died
+
 enum State {
 	GROUNDED,
 	JUMPING,
@@ -22,9 +24,9 @@ var jump_state_elapsed = 0
 func _ready() -> void:
 	hitbox.connect('body_entered', on_hit)
 
-func on_hit(body: Node2D) -> void:
-	print("hit!")
-	print(body)
+func on_hit(_body: Node2D) -> void:
+	print("died")
+	died.emit()
 
 func _physics_process(delta: float):
 	match state:
