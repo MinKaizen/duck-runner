@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi7x0dcdvp3kp"]
+
+[ext_resource type="Script" uid="uid://dhnwq7n18f3b2" path="res://src/enemy.gd" id="1_5s80d"]
+[ext_resource type="Texture2D" uid="uid://bf5tvo8c0iygv" path="res://assets/rock.png" id="1_wyfgd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bktlc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wyfgd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5s80d"]
+size = Vector2(20, 14)
+
+[node name="Rock" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_5s80d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_bktlc")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 25)
+shape = SubResource("RectangleShape2D_5s80d")
