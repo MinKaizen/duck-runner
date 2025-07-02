@@ -17,6 +17,15 @@ var jump_hold_timer = 0.0
 var jump_started = false
 var jump_state_elapsed = 0
 
+@onready var hitbox = %Hitbox
+
+func _ready() -> void:
+	hitbox.connect('body_entered', on_hit)
+
+func on_hit(body: Node2D) -> void:
+	print("hit!")
+	print(body)
+
 func _physics_process(delta: float):
 	match state:
 		State.GROUNDED:
