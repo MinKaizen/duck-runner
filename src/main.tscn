@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b55hgeofj6nfc"]
+[gd_scene load_steps=8 format=3 uid="uid://b55hgeofj6nfc"]
 
 [ext_resource type="Script" uid="uid://o6vxqe1i26p2" path="res://src/main.gd" id="1_eewff"]
 [ext_resource type="PackedScene" uid="uid://jnkfkos2xch2" path="res://src/background.tscn" id="2_gh0ne"]
 [ext_resource type="PackedScene" uid="uid://di4u67i0uydmq" path="res://src/floor.tscn" id="3_5q4o7"]
 [ext_resource type="PackedScene" uid="uid://cfd1v6l03kjmy" path="res://src/player.tscn" id="4_3cfgd"]
 [ext_resource type="PackedScene" uid="uid://bn4sust3a166v" path="res://src/game_over.tscn" id="6_kmhfv"]
+[ext_resource type="PackedScene" uid="uid://b40c2ughnlxnt" path="res://src/idle.tscn" id="7_5mrjc"]
 [ext_resource type="PackedScene" uid="uid://dggaf8gunssyp" path="res://src/enemy_spawner.tscn" id="7_rlaii"]
 
 [node name="Main" type="Node2D"]
@@ -12,6 +13,7 @@ process_mode = 3
 script = ExtResource("1_eewff")
 
 [node name="Game" type="Node2D" parent="."]
+unique_name_in_owner = true
 process_mode = 1
 
 [node name="Background" parent="Game" instance=ExtResource("2_gh0ne")]
@@ -32,3 +34,8 @@ visible = false
 [node name="GameOver" parent="GameOverScreen" instance=ExtResource("6_kmhfv")]
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="IdleScreen" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="Idle" parent="IdleScreen" instance=ExtResource("7_5mrjc")]
