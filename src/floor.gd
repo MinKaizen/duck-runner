@@ -4,3 +4,7 @@ extends Node2D
 
 func _ready() -> void:
 	parallax.autoscroll = Global.move_velocity
+
+func _physics_process(_delta: float) -> void:
+	parallax.autoscroll = Global.move_velocity
+

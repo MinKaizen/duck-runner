@@ -1,0 +1,6 @@
+We implemented speed up but:
+- it's too jerky. Its jarring. use a tween
+- Some objects will speedup mid flight, which is hard to predict.
+solution:
+each enemy comes with its own speed
+as for the floor... Maybe we don't move the floor? 

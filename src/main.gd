@@ -13,9 +13,11 @@ var state = State.IDLE
 @onready var idle_screen = %Idle
 @onready var game = %Game
 @onready var score = %Score
+@onready var speedup_timer = %SpeedupTimer
 
 func _ready() -> void:
 	player.connect('died', on_player_died)
+	speedup_timer.connect('timeout', func (): Global.move_velocity *= Global.SPEEDUP_MULTIPLIER)
 	get_tree().paused = true
 
 func on_player_died() -> void:
@@ -38,6 +40,7 @@ func _input(event: InputEvent) -> void:
 		reset_game()
 
 func reset_game() -> void:
+	Global.move_velocity = Global.INITIAL_MOVE_VELOCITY
 	var tree = get_tree()
 	tree.paused = false
 	var enemies = tree.get_nodes_in_group('enemy')
