@@ -22,5 +22,5 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Score: 0000000"
+text = "Score: 0000000000"
 horizontal_alignment = 1
