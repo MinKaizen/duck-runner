@@ -12,6 +12,7 @@ var state = State.IDLE
 @onready var game_over_screen = %GameOver
 @onready var idle_screen = %Idle
 @onready var game = %Game
+@onready var score = %Score
 
 func _ready() -> void:
 	player.connect('died', on_player_died)
@@ -40,6 +41,7 @@ func reset_game() -> void:
 	var tree = get_tree()
 	tree.paused = false
 	var enemies = tree.get_nodes_in_group('enemy')
+	score.reset()
 	for enemy in enemies:
 		enemy.queue_free()
 
