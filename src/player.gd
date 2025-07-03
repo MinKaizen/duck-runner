@@ -12,7 +12,7 @@ enum State {
 const GRAVITY = 2000.0
 const FLY_ACCELERATION = -400.0
 const FLY_DOWN_THRESHOLD = 190.0
-const FLY_UP_THRESHOLD = -300.0
+const FLY_UP_THRESHOLD = -220.0
 const JUMP_VELOCITY = -700.0
 
 var state = State.FALLING:
