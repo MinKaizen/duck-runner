@@ -5,19 +5,17 @@ signal died
 enum State {
 	GROUNDED,
 	JUMPING,
-	FALLING
+	FALLING,
+	FLYING,
 }
 
 const GRAVITY = 2000.0
-const JUMP_VELOCITY = -500.0
-const JUMP_HOLD_ACCELERATION = -1500
-const MAX_JUMP_TIME = 0.5
+const FLY_ACCELERATION = -400.0
+const FLY_DOWN_THRESHOLD = 190.0
+const FLY_UP_THRESHOLD = -300.0
+const JUMP_VELOCITY = -700.0
 
 var state = State.FALLING
-var jump_buffer_timer = 0.0
-var jump_hold_timer = 0.0
-var jump_started = false
-var jump_state_elapsed = 0
 
 @onready var hitbox = %Hitbox
 
@@ -36,6 +34,8 @@ func _physics_process(delta: float):
 			handle_jumping_state(delta)
 		State.FALLING:
 			handle_falling_state(delta)
+		State.FLYING:
+			handle_flying_state(delta)
 	move_and_slide()
 
 
@@ -45,14 +45,20 @@ func handle_grounded_state(_delta):
 		state = State.JUMPING
 
 func handle_jumping_state(delta):
-	jump_state_elapsed += delta
-	velocity.y += (GRAVITY + JUMP_HOLD_ACCELERATION) * delta
-	if not Input.is_action_pressed("jump"):
+	velocity.y += GRAVITY * delta
+	if is_on_floor():
+		velocity.y = 0
+		state = State.GROUNDED
+	if velocity.y >= FLY_DOWN_THRESHOLD and Input.is_action_pressed('jump'):
+		state = State.FLYING
+
+func handle_flying_state(delta):
+	velocity.y += FLY_ACCELERATION * delta
+	if is_on_floor():
+		velocity.y = 0
+		state = State.GROUNDED
+	if velocity.y <= FLY_UP_THRESHOLD or not Input.is_action_pressed('jump'):
 		state = State.FALLING
-		jump_state_elapsed = 0
-	if jump_state_elapsed >= MAX_JUMP_TIME:
-		state = State.FALLING
-		jump_state_elapsed = 0
 
 func handle_falling_state(delta):
 	velocity.y += GRAVITY * delta
