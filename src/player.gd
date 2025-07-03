@@ -5,15 +5,18 @@ signal died
 enum State {
 	GROUNDED,
 	JUMPING,
+	LONG_JUMPING,
 	FALLING,
 	FLYING,
 }
 
-const GRAVITY = 2000.0
+const GRAVITY = 2500.0
 const FLY_ACCELERATION = -400.0
 const FLY_DOWN_THRESHOLD = 190.0
 const FLY_UP_THRESHOLD = -220.0
-const JUMP_VELOCITY = -700.0
+const JUMP_VELOCITY = -500.0
+const MAX_JUMP_DURATION = 0.5
+const LONG_JUMP_GRAVITY = 900.0
 
 var state = State.FALLING:
 	set(value):
@@ -21,8 +24,18 @@ var state = State.FALLING:
 		match value:
 			State.GROUNDED:
 				velocity.y = 0
+				did_long_jump = false
+				is_long_jumping = false
+				long_jump_elapsed = 0.0
 			State.JUMPING:
 				velocity.y = JUMP_VELOCITY
+				if Input.is_action_pressed('jump'):
+					is_long_jumping = true
+					did_long_jump = true
+
+var did_long_jump = false
+var is_long_jumping = false
+var long_jump_elapsed = 0.0
 
 @onready var hitbox = %Hitbox
 
@@ -39,6 +52,8 @@ func _physics_process(delta: float):
 			handle_grounded_state(delta)
 		State.JUMPING:
 			handle_jumping_state(delta)
+		State.LONG_JUMPING:
+			handle_long_jumping_state(delta)
 		State.FALLING:
 			handle_falling_state(delta)
 		State.FLYING:
@@ -50,6 +65,26 @@ func handle_grounded_state(_delta):
 		state = State.JUMPING
 
 func handle_jumping_state(delta):
+	if is_long_jumping:
+		velocity.y += LONG_JUMP_GRAVITY * delta
+		long_jump_elapsed += delta
+	else:
+		velocity.y += GRAVITY * delta
+	
+	if long_jump_elapsed >= MAX_JUMP_DURATION:
+		is_long_jumping = false
+	
+	if Input.is_action_just_released('jump'):
+		is_long_jumping = false
+
+	if is_on_floor():
+		state = State.GROUNDED
+	if velocity.y >= FLY_DOWN_THRESHOLD and Input.is_action_pressed('jump'):
+		state = State.FLYING
+	elif velocity.y >= FLY_DOWN_THRESHOLD:
+		state = State.FALLING
+
+func handle_long_jumping_state(delta):
 	velocity.y += GRAVITY * delta
 	if is_on_floor():
 		state = State.GROUNDED
