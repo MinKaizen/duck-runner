@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfd1v6l03kjmy"]
+[gd_scene load_steps=9 format=3 uid="uid://cfd1v6l03kjmy"]
 
 [ext_resource type="Script" uid="uid://cjocxq2datxch" path="res://src/player.gd" id="1_ehvfd"]
 [ext_resource type="Texture2D" uid="uid://dxxxyt6hi8yyb" path="res://assets/duck1.png" id="1_gmfve"]
 [ext_resource type="Texture2D" uid="uid://igagkqdsexp6" path="res://assets/duck2.png" id="2_ehvfd"]
+[ext_resource type="AudioStream" uid="uid://be0p80nqfwjk0" path="res://assets/sound_effects/duck-jump.mp3" id="4_pg28d"]
+[ext_resource type="AudioStream" uid="uid://4aepe7v77b27" path="res://assets/sound_effects/duck-fly.mp3" id="5_21lrq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bktlc"]
 animations = [{
@@ -49,3 +51,12 @@ collision_mask = 4
 position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_ehvfd")
 debug_color = Color(0.879197, 0.285413, 0.479318, 0.42)
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_pg28d")
+volume_db = -20.0
+
+[node name="FlySound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_21lrq")

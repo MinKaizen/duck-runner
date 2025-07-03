@@ -20,14 +20,26 @@ const LONG_JUMP_GRAVITY = 900.0
 
 var state = State.FALLING:
 	set(value):
+		if value != state:
+			match state:
+				State.FLYING:
+					fly_sound.stop()
+					fly_sound.seek(0)
 		state = value
+
 		match value:
 			State.GROUNDED:
 				velocity.y = 0
 				did_long_jump = false
 				is_long_jumping = false
 				long_jump_elapsed = 0.0
+			State.FLYING:
+				fly_sound.seek(0)
+				fly_sound.play()
 			State.JUMPING:
+				jump_sound.seek(0)
+				jump_sound.pitch_scale = randf_range(0.5, 0.8)
+				jump_sound.play()
 				velocity.y = JUMP_VELOCITY
 				if Input.is_action_pressed('jump'):
 					is_long_jumping = true
@@ -38,6 +50,8 @@ var is_long_jumping = false
 var long_jump_elapsed = 0.0
 
 @onready var hitbox = %Hitbox
+@onready var jump_sound = %JumpSound
+@onready var fly_sound = %FlySound
 
 func _ready() -> void:
 	hitbox.connect('body_entered', on_hit)
