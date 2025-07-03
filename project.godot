@@ -23,6 +23,10 @@ window/size/mode=2
 window/size/initial_position_type=3
 window/stretch/mode="viewport"
 
+[global_group]
+
+enemy=""
+
 [input]
 
 jump={
