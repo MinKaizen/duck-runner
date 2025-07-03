@@ -1,4 +1,6 @@
-extends Parallax2D
+extends Node2D
 
-func _physics_process(delta: float) -> void:
-	position.x -= 20 * delta
+@onready var parallax: Parallax2D = %Parallax2D
+
+func _ready() -> void:
+	parallax.autoscroll = Global.move_velocity

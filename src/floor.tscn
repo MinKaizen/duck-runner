@@ -1,17 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://di4u67i0uydmq"]
+[gd_scene load_steps=4 format=3 uid="uid://di4u67i0uydmq"]
 
 [ext_resource type="Texture2D" uid="uid://buvbdfvboi3i0" path="res://assets/floor.png" id="1_ras36"]
+[ext_resource type="Script" uid="uid://bp6qmw8iaqhrd" path="res://src/floor.gd" id="1_ss4f4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ras36"]
 size = Vector2(1214, 60)
 
 [node name="Floor" type="Node2D"]
+script = ExtResource("1_ss4f4")
 
-[node name="Floor" type="Parallax2D" parent="."]
+[node name="Parallax2D" type="Parallax2D" parent="."]
+unique_name_in_owner = true
 repeat_size = Vector2(640, 0)
-autoscroll = Vector2(-200, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
 position = Vector2(320, 310)
 texture = ExtResource("1_ras36")
 
