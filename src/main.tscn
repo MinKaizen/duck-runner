@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b55hgeofj6nfc"]
+[gd_scene load_steps=9 format=3 uid="uid://b55hgeofj6nfc"]
 
 [ext_resource type="Script" uid="uid://o6vxqe1i26p2" path="res://src/main.gd" id="1_eewff"]
 [ext_resource type="PackedScene" uid="uid://jnkfkos2xch2" path="res://src/background.tscn" id="2_gh0ne"]
 [ext_resource type="PackedScene" uid="uid://di4u67i0uydmq" path="res://src/floor.tscn" id="3_5q4o7"]
 [ext_resource type="PackedScene" uid="uid://cfd1v6l03kjmy" path="res://src/player.tscn" id="4_3cfgd"]
+[ext_resource type="PackedScene" uid="uid://bd3sl2xembejx" path="res://src/score.tscn" id="6_5mrjc"]
 [ext_resource type="PackedScene" uid="uid://bn4sust3a166v" path="res://src/game_over.tscn" id="6_kmhfv"]
 [ext_resource type="PackedScene" uid="uid://b40c2ughnlxnt" path="res://src/idle.tscn" id="7_5mrjc"]
 [ext_resource type="PackedScene" uid="uid://dggaf8gunssyp" path="res://src/enemy_spawner.tscn" id="7_rlaii"]
@@ -28,6 +29,10 @@ position = Vector2(72, 272)
 position = Vector2(707, 300)
 
 [node name="UI" type="CanvasLayer" parent="."]
+process_mode = 1
+
+[node name="Score" parent="UI" instance=ExtResource("6_5mrjc")]
+unique_name_in_owner = true
 
 [node name="Idle" parent="UI" instance=ExtResource("7_5mrjc")]
 unique_name_in_owner = true

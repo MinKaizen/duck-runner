@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd3sl2xembejx"]
+
+[ext_resource type="Script" uid="uid://dyiwcnftnxng5" path="res://src/score.gd" id="1_xy716"]
+
+[node name="Score" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xy716")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Score: 0000000"
+horizontal_alignment = 1
