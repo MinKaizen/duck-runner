@@ -15,7 +15,6 @@ func reset() -> void:
 
 func _physics_process(delta: float) -> void:
 	score += delta * speed
-	print(score)
 	label.text = score_text
 
 
