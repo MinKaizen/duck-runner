@@ -17,7 +17,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5s80d"]
 size = Vector2(20, 14)
 
-[node name="Rock" type="CharacterBody2D"]
+[node name="Rock" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 4
 script = ExtResource("1_5s80d")
 
