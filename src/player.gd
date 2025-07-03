@@ -15,7 +15,14 @@ const FLY_DOWN_THRESHOLD = 190.0
 const FLY_UP_THRESHOLD = -300.0
 const JUMP_VELOCITY = -700.0
 
-var state = State.FALLING
+var state = State.FALLING:
+	set(value):
+		state = value
+		match value:
+			State.GROUNDED:
+				velocity.y = 0
+			State.JUMPING:
+				velocity.y = JUMP_VELOCITY
 
 @onready var hitbox = %Hitbox
 
@@ -38,30 +45,29 @@ func _physics_process(delta: float):
 			handle_flying_state(delta)
 	move_and_slide()
 
-
 func handle_grounded_state(_delta):
 	if Input.is_action_just_pressed('jump'):
-		velocity.y = JUMP_VELOCITY
 		state = State.JUMPING
 
 func handle_jumping_state(delta):
 	velocity.y += GRAVITY * delta
 	if is_on_floor():
-		velocity.y = 0
 		state = State.GROUNDED
 	if velocity.y >= FLY_DOWN_THRESHOLD and Input.is_action_pressed('jump'):
 		state = State.FLYING
+	elif velocity.y >= FLY_DOWN_THRESHOLD:
+		state = State.FALLING
 
 func handle_flying_state(delta):
 	velocity.y += FLY_ACCELERATION * delta
 	if is_on_floor():
-		velocity.y = 0
 		state = State.GROUNDED
-	if velocity.y <= FLY_UP_THRESHOLD or not Input.is_action_pressed('jump'):
+	if velocity.y <= FLY_UP_THRESHOLD:
+		state = State.FALLING
+	if not Input.is_action_pressed('jump'):
 		state = State.FALLING
 
 func handle_falling_state(delta):
 	velocity.y += GRAVITY * delta
 	if is_on_floor():
-		velocity.y = 0
 		state = State.GROUNDED
