@@ -9,8 +9,8 @@ enum State {
 var state = State.IDLE
 
 @onready var player = %Player
-@onready var game_over_screen = %GameOverScreen
-@onready var idle_screen = %IdleScreen
+@onready var game_over_screen = %GameOver
+@onready var idle_screen = %Idle
 @onready var game = %Game
 
 func _ready() -> void:
